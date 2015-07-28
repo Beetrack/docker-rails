@@ -20,9 +20,6 @@ RUN apt-get -y install git curl zlib1g-dev build-essential libssl-dev libreadlin
 # install mysql dev
 RUN apt-get -y install libmysqlclient-dev
 
-# test install mysql client to connect
-RUN apt-get -y install mysql-client
-
 RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv
 RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build
 
@@ -34,18 +31,5 @@ RUN rbenv global 2.1.5
 
 RUN gem install rails -v 4.0.11
 
-# add app
-ADD blog.tar.gz /home/
-
-# execute bundle install
-WORKDIR /home/blog
-
-# install app
-RUN bundle install
-
-# expose HTTP
-EXPOSE 3000
-
 # exucete rails server
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
+#CMD ["rails", "server", "-b", "0.0.0.0"]
